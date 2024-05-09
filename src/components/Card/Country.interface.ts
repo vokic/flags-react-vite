@@ -1,4 +1,6 @@
-export interface Country {
+import { Result } from "../Result.interface";
+
+export interface Country extends Result {
   name: {
     common: string;
     official: string;

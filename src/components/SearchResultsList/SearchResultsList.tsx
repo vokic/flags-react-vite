@@ -1,7 +1,14 @@
 import "./SearchResultsList.css";
-import { SearchResult } from "../SearchResults/SearchResult";
+import { SearchResults } from "../SearchResults/SearchResults";
+import Country from "../Card/Country.interface";
 
-export const SearchResultsList = ({ results, errorMessage }) => {
+export const SearchResultsList = ({
+  results,
+  errorMessage,
+}: {
+  results: Country[];
+  errorMessage: string;
+}) => {
   console.log("Results:", results);
 
   let content;
@@ -9,7 +16,7 @@ export const SearchResultsList = ({ results, errorMessage }) => {
     content = <p className="error-message">{errorMessage}</p>;
   } else {
     content = results.map((result, index) => (
-      <SearchResult result={result} key={index} />
+      <SearchResults result={result} key={index} />
     ));
   }
 

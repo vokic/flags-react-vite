@@ -2,10 +2,18 @@ import { useState } from "react";
 import { FaSearch } from "react-icons/fa";
 import "./SearchBar.css";
 
-export const SearchBar = ({ setResults, setErrorMessage }) => {
+interface SearchBarProps<T> {
+  setResults: (results: T[]) => void;
+  setErrorMessage: (errorMessage: string) => void;
+}
+
+export const SearchBar = <T,>({
+  setResults,
+  setErrorMessage,
+}: SearchBarProps<T>) => {
   const [input, setInput] = useState("");
 
-  const fetchData = async (value) => {
+  const fetchData = async (value: string) => {
     try {
       const response = await fetch(
         `https://restcountries.com/v3.1/name/${value}`
@@ -18,12 +26,13 @@ export const SearchBar = ({ setResults, setErrorMessage }) => {
       setResults(json);
       setErrorMessage("");
     } catch (error) {
-      setErrorMessage(error.message);
+      const typedError = error as Error;
+      setErrorMessage(typedError.message);
       setResults([]);
     }
   };
 
-  const handleChange = async (value) => {
+  const handleChange = async (value: string) => {
     setInput(value);
     if (!value) return setResults([]); // Clear results
     fetchData(value);

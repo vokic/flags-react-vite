@@ -1,8 +1,10 @@
-import React, { useState } from "react";
-import "./SearchResult.css";
+import { useState } from "react";
+import "./SearchResults.css";
 import { Card } from "../Card/Card";
 
-const SearchResult = ({ result }) => {
+import Country from "../Card/Country.interface";
+
+export const SearchResults = ({ result }: { result: Country }) => {
   const [showCard, setShowCard] = useState(false);
 
   const handleClick = () => {
@@ -20,9 +22,9 @@ const SearchResult = ({ result }) => {
       <div className="search-result" onClick={handleClick}>
         {result && result.name && result.name.common}
       </div>
-      {showCard && result && <Card country={result} onClose={handleCloseCard} />}
+      {showCard && result && (
+        <Card country={result} onClose={handleCloseCard} />
+      )}
     </>
   );
 };
-
-export { SearchResult };
