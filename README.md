@@ -28,6 +28,7 @@ This codebase consists of a React application for searching and displaying detai
 
 - Users can search for countries by name using the SearchBar component.
 - Search results are displayed in a list format, with detailed information available on click.
+- Beautiful video in the background
 
 **Additional Information:**
 
